@@ -15,17 +15,23 @@
  * limitations under the License.
  */
 
-package org.keycloak.operator.crds;
+package org.keycloak.operator;
 
-import io.fabric8.kubernetes.api.model.Namespaced;
-import io.fabric8.kubernetes.client.CustomResource;
-import io.fabric8.kubernetes.model.annotation.Group;
-import io.fabric8.kubernetes.model.annotation.Version;
-import org.keycloak.operator.Constants;
+import java.util.Map;
 
 /**
  * @author Vaclav Muzikar <vmuzikar@redhat.com>
  */
-@Group(Constants.CRDS_GROUP)
-@Version(Constants.CRDS_VERSION)
-public class Keycloak extends CustomResource<KeycloakSpec, KeycloakStatus> implements Namespaced {}
+public final class Constants {
+    public static final String CRDS_GROUP = "keycloak.org";
+    public static final String CRDS_VERSION = "v1alpha1";
+    public static final String MANAGED_BY_LABEL = "app.kubernetes.io/managed-by";
+    public static final String APPLICATION = "keycloak";
+
+    public static final Map<String, String> DEFAULT_LABELS = Map.of(
+        "app", APPLICATION
+    );
+
+    public static final String KEYCLOAK_IMAGE = "quay.io/keycloak/keycloak:latest";
+    public static final String KEYCLOAK_INIT_IMAGE = "quay.io/keycloak/keycloak-init-container:latest";
+}

@@ -17,8 +17,40 @@
 
 package org.keycloak.operator.crds;
 
+import java.util.List;
+
 /**
  * @author Vaclav Muzikar <vmuzikar@redhat.com>
  */
 public class KeycloakSpec {
+    private List<String> extensions;
+    private ExternalDatabaseSpec externalDatabase;
+
+    public List<String> getExtensions() {
+        return extensions;
+    }
+
+    public void setExtensions(List<String> extensions) {
+        this.extensions = extensions;
+    }
+
+    public ExternalDatabaseSpec getExternalDatabase() {
+        return externalDatabase;
+    }
+
+    public void setExternalDatabase(ExternalDatabaseSpec externalDatabase) {
+        this.externalDatabase = externalDatabase;
+    }
+
+    public static class ExternalDatabaseSpec {
+        private boolean enabled;
+
+        public boolean isEnabled() {
+            return enabled;
+        }
+
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+        }
+    }
 }

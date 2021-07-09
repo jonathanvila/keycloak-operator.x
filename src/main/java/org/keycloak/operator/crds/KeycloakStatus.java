@@ -21,4 +21,22 @@ package org.keycloak.operator.crds;
  * @author Vaclav Muzikar <vmuzikar@redhat.com>
  */
 public class KeycloakStatus {
+    private String phase;
+    private boolean ready;
+
+    public String getPhase() {
+        return phase;
+    }
+
+    public void setPhase(String phase) {
+        this.phase = phase;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
 }

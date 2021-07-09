@@ -15,17 +15,28 @@
  * limitations under the License.
  */
 
-package org.keycloak.operator.crds;
-
-import io.fabric8.kubernetes.api.model.Namespaced;
-import io.fabric8.kubernetes.client.CustomResource;
-import io.fabric8.kubernetes.model.annotation.Group;
-import io.fabric8.kubernetes.model.annotation.Version;
-import org.keycloak.operator.Constants;
+package org.keycloak.operator;
 
 /**
  * @author Vaclav Muzikar <vmuzikar@redhat.com>
  */
-@Group(Constants.CRDS_GROUP)
-@Version(Constants.CRDS_VERSION)
-public class Keycloak extends CustomResource<KeycloakSpec, KeycloakStatus> implements Namespaced {}
+public enum CRStatus {
+    INITIALIZING("initializing", false),
+    RECONCILING("reconciling", true);
+
+    private final String phase;
+    private final boolean ready;
+
+    CRStatus(String phase, boolean ready) {
+        this.phase = phase;
+        this.ready = ready;
+    }
+
+    public String getPhase() {
+        return phase;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+}

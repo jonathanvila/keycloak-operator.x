@@ -13,12 +13,11 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus-plugin.version>1.13.0.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>1.13.7.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>1.13.0.Final</quarkus.platform.version>
-    <quarkus-operator-sdk.version>2.0.0.Beta1</quarkus-operator-sdk.version>
-    <java-operator-sdk.version>1.9.1</java-operator-sdk.version>
+    <quarkus.platform.version>1.13.7.Final</quarkus.platform.version>
+    <quarkus-operator-sdk.version>1.9.4</quarkus-operator-sdk.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
   <dependencyManagement>
@@ -46,17 +45,6 @@
       <groupId>io.quarkiverse.operatorsdk</groupId>
       <artifactId>quarkus-operator-sdk</artifactId>
       <version>${quarkus-operator-sdk.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>io.javaoperatorsdk</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>io.javaoperatorsdk</groupId>
-      <artifactId>operator-framework</artifactId>
-      <version>${java-operator-sdk.version}</version>
     </dependency>
   </dependencies>
   <build>
