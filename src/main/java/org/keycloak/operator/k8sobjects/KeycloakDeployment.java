@@ -21,7 +21,7 @@ import io.fabric8.kubernetes.api.model.apps.StatefulSet;
 import io.fabric8.kubernetes.api.model.apps.StatefulSetBuilder;
 import org.keycloak.operator.ConfigManager;
 import org.keycloak.operator.Constants;
-import org.keycloak.operator.crds.Keycloak;
+import org.keycloak.operator.crds.v1alpha1.Keycloak;
 
 /**
  * @author Vaclav Muzikar <vmuzikar@redhat.com>

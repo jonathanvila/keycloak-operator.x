@@ -17,7 +17,7 @@
 
 package org.keycloak.operator;
 
-import org.keycloak.operator.crds.Keycloak;
+import org.keycloak.operator.crds.v1alpha1.Keycloak;
 
 /**
  * @author Vaclav Muzikar <vmuzikar@redhat.com>
