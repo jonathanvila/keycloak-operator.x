@@ -26,28 +26,28 @@ import io.javaoperatorsdk.operator.api.ResourceController;
 import io.javaoperatorsdk.operator.api.UpdateControl;
 import io.javaoperatorsdk.operator.processing.event.EventSourceManager;
 import io.javaoperatorsdk.operator.processing.event.internal.CustomResourceEvent;
-import org.jboss.logging.Logger;
+import lombok.extern.java.Log;
 import org.keycloak.operator.crds.v1alpha1.Keycloak;
 import org.keycloak.operator.crds.v1alpha1.KeycloakStatus;
 import org.keycloak.operator.events.KeycloakDeploymentEvent;
 import org.keycloak.operator.events.KeycloakDeploymentEventSource;
 import org.keycloak.operator.k8sobjects.KeycloakDeployment;
 
+import javax.inject.Inject;
+
 import java.util.Objects;
 
-/**
- * @author Vaclav Muzikar <vmuzikar@redhat.com>
- */
-@Controller
+@Controller(namespaces = Controller.WATCH_CURRENT_NAMESPACE)
+@Log
 public class KeycloakController implements ResourceController<Keycloak> {
     private final KeycloakDeploymentEventSource keycloakDeploymentEventSource;
-    private final KubernetesClient client;
-    private final Logger logger;
 
-    public KeycloakController(KeycloakDeploymentEventSource keycloakDeploymentEventSource, KubernetesClient client, Logger logger) {
+    @Inject
+    KubernetesClient client;
+
+    public KeycloakController(KeycloakDeploymentEventSource keycloakDeploymentEventSource, KubernetesClient client) {
         this.keycloakDeploymentEventSource = keycloakDeploymentEventSource;
         this.client = client;
-        this.logger = logger;
     }
 
     @Override
@@ -58,21 +58,21 @@ public class KeycloakController implements ResourceController<Keycloak> {
 
     @Override
     public UpdateControl<Keycloak> createOrUpdateResource(Keycloak keycloak, Context<Keycloak> context) {
-        logger.info("--- Starting createOrUpdateResource");
+        log.info("--- Starting createOrUpdateResource");
         UpdateControl<Keycloak> ret = UpdateControl.noUpdate();
 
         if (context.getEvents().getLatestOfType(CustomResourceEvent.class).isPresent()) {
-            logger.info("CR change detected; updating KC deployment");
+            log.info("CR change detected; updating KC deployment");
             reconcileKeycloakDeployment(keycloak);
         }
 
         if (context.getEvents().getLatestOfType(KeycloakDeploymentEvent.class).isPresent()) {
-            logger.info("KC deployment change detected; updating CR status");
+            log.info("KC deployment change detected; updating CR status");
             reconcileCRStatus(keycloak);
             ret = UpdateControl.updateStatusSubResource(keycloak);
         }
 
-        logger.info("--- createOrUpdateResource finished");
+        log.info("--- createOrUpdateResource finished");
         return ret;
     }
 
