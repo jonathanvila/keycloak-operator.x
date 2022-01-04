@@ -3,6 +3,7 @@ package org.keycloak.operator.crds.v1alpha1;
 
 import io.fabric8.kubernetes.api.model.Affinity;
 import io.fabric8.kubernetes.api.model.EnvVar;
+import io.fabric8.kubernetes.api.model.Volume;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

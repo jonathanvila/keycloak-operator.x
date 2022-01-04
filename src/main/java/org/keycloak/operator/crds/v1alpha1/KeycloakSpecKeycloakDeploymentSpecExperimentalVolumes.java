@@ -1,14 +1,16 @@
 
 package org.keycloak.operator.crds.v1alpha1;
 
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.api.model.ListMeta;
 import io.fabric8.kubernetes.api.model.Volume;
+import io.fabric8.kubernetes.client.CustomResourceList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import lombok.ToString;
-import org.keycloak.operator.crds.ListModel;
 
 import java.util.List;
 
@@ -17,11 +19,9 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @ToString
-public class KeycloakSpecKeycloakDeploymentSpecExperimentalVolumes implements ListModel<Volume> {
+public class KeycloakSpecKeycloakDeploymentSpecExperimentalVolumes {
 
   private Number defaultMode;
-
-  @Singular(value = "addToItems", ignoreNullCollections = true)
   private List<Volume> items;
 
 }

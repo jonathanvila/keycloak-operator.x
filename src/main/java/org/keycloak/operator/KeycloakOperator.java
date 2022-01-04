@@ -21,6 +21,7 @@ import io.javaoperatorsdk.operator.Operator;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
+import lombok.extern.java.Log;
 
 import javax.inject.Inject;
 
@@ -29,6 +30,7 @@ import javax.inject.Inject;
  */
 
 @QuarkusMain
+@Log
 public class KeycloakOperator implements QuarkusApplication {
 
     @Inject
@@ -40,8 +42,12 @@ public class KeycloakOperator implements QuarkusApplication {
 
     @Override
     public int run(String... args) {
+        log.info("Starting to Run");
         operator.start();
+
+        log.info("Waiting for Exit");
         Quarkus.waitForExit();
+
         return 0;
     }
 }

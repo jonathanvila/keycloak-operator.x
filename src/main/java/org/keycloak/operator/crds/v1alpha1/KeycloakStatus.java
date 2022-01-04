@@ -1,6 +1,7 @@
 
 package org.keycloak.operator.crds.v1alpha1;
 
+import io.fabric8.kubernetes.api.model.KubernetesResource;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.util.Map;
 @NoArgsConstructor
 @Data
 @ToString
-public class KeycloakStatus {
+public class KeycloakStatus implements KubernetesResource {
 
   @NonNull
 
