@@ -67,7 +67,7 @@ public class K8sClusterTestResource implements QuarkusTestResourceLifecycleManag
         QuarkusTestResourceLifecycleManager.super.init(initArgs);
         if (k3s) {
             logger = new ToStringConsumer();
-            k3sContainer = new K3sContainer(DockerImageName.parse("rancher/k3s")).withLogConsumer(new CustomLogConsumer(log).withPrefix("KIND"));
+            k3sContainer = new K3sContainer(DockerImageName.parse("rancher/k3s:v1.23.1-rc1-k3s1")).withLogConsumer(new CustomLogConsumer(log).withPrefix("KIND"));
         } else {
             kindContainer = new KindContainer().withLogConsumer(new CustomLogConsumer(log).withPrefix("KIND"));
         }

@@ -97,6 +97,11 @@
       <version>0.0.16</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-ext-jdk15on</artifactId>
+      <version>1.70</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

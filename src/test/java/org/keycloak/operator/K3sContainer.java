@@ -23,7 +23,7 @@ public class K3sContainer extends GenericContainer<K3sContainer> {
 
     public K3sContainer(DockerImageName dockerImageName) {
         super(dockerImageName);
-        dockerImageName.assertCompatibleWith(DockerImageName.parse("rancher/k3s"));
+        dockerImageName.assertCompatibleWith(DockerImageName.parse("rancher/k3s:v1.23.1-rc1-k3s1"));
 
         addExposedPorts(6443, 8443);
         setPrivilegedMode(true);
@@ -39,7 +39,8 @@ public class K3sContainer extends GenericContainer<K3sContainer> {
                 "server",
                 "--no-deploy=traefik",
                 "--token=" + randomToken,
-                "--tls-san=" + this.getHost()
+                "--tls-san=" + this.getHost(),
+                "--snapshotter=btrfs"
         );
         setWaitStrategy(new LogMessageWaitStrategy().withRegEx(".*Node controller sync successful.*"));
     }
