@@ -11,5 +11,5 @@ jobs:
         java-version: 11
     - name: Run e2e tests
       run: |
-        make clean test
+        mvn clean test
 
